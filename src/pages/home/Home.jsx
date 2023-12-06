@@ -33,7 +33,7 @@ function Home() {
   }
 
   return (
-    <section>
+    <section className="p-6">
       <h1 className="text-2xl text-center font-bold">Exclusive Products</h1>
       <div className="w-full flex justify-center items-center">
         <input

@@ -14,8 +14,8 @@ function MyOrder() {
   }
   const latestOrderProducts = order?.[orderId]?.products || [];
   return (
-    <>
-      <div className="w-[450px] flex relative justify-center items-center my-2">
+    <section className="p-6">
+      <div className="w-[450px] flex relative justify-center items-center ">
         <Link to={"/my-orders"}>
           <button className="absolute left-0 top-0.5 w-8 h-8 text-gray-900">
             <HiChevronLeft className=" w-8 h-8" />
@@ -43,7 +43,7 @@ function MyOrder() {
           </span>
         </p>
       </div>
-    </>
+    </section>
   );
 }
 

@@ -6,8 +6,8 @@ import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 function MyOrders() {
   const { order } = useContext(ShoppingCartContext);
   return (
-    <section>
-      <div className="w-[450px] flex relative justify-center items-center my-2">
+    <section className="p-6">
+      <div className="w-[450px] flex relative justify-center items-center">
         <h1 className="text-2xl text-center font-bold">My Orders</h1>
       </div>
       {order.map((orden, index) => {
