@@ -40,10 +40,16 @@ export function ShoppingCartProvider({ children }) {
   //get products by category
   const [searchByCategory, setSearchByCategory] = useState(null);
 
+  //skeleton
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
-      .then((data) => setProducts(data));
+      .then((data) => {
+        setProducts(data);
+        setLoading(false);
+      });
   }, []);
 
   function filteredProductsByTitle(products, searchByTitle) {
@@ -132,6 +138,8 @@ export function ShoppingCartProvider({ children }) {
         setFilteredProducts,
         searchByCategory,
         setSearchByCategory,
+        loading,
+        setLoading,
       }}
     >
       {children}

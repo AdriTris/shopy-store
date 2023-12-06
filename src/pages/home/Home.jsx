@@ -1,8 +1,8 @@
 import { useContext } from "react"; //usamos useEffect para la API
 import CardProduct from "../../components/Cards/CardProduct";
 import ProductDetail from "../../components/productDetail/ProductDetail";
+import Skeleton from "../../components/Skeleton/Skeleton";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
-import { data } from "autoprefixer";
 
 function Home() {
   const {
@@ -14,9 +14,15 @@ function Home() {
     setFilteredProducts,
     searchByCategory,
     setSearchByCategory,
+    loading,
   } = useContext(ShoppingCartContext);
 
   function renderView() {
+    if (loading) {
+      // Muestra el esqueleto mientras se cargan los productos
+      return Array.from({ length: 12 }, (_, index) => <Skeleton key={index} />);
+    }
+
     if (filteredProducts?.length > 0) {
       return filteredProducts?.map((product) => (
         <CardProduct key={product.id} product={product} />
@@ -24,20 +30,6 @@ function Home() {
     } else {
       return <p>No Results Found</p>;
     }
-
-    // if (searchByTitle?.length >= 0) {
-    //   if (filteredProducts?.length >= 0) {
-    //     return filteredProducts?.map((product) => (
-    //       <CardProduct key={product.id} product={product} />
-    //     ));
-    //   } else {
-    //     <p>Not found articles</p>;
-    //   }
-    // } else {
-    //   return products?.map((product) => (
-    //     <CardProduct key={product.id} product={product} />
-    //   ));
-    // }
   }
 
   return (
@@ -53,7 +45,7 @@ function Home() {
           }}
         />
       </div>
-      <div className="grid grid-cols-4 gap-5 mt-4">{renderView()}</div>
+      <div className="w-full grid grid-cols-4 gap-5 mt-4">{renderView()}</div>
       <ProductDetail />
     </section>
   );
